@@ -1,34 +1,26 @@
 import pygame
 from pygame.locals import *
+import src.level as level
+import src.snake as snake
+import src.window as window
+
+LEVEL = 1
+HEIGH = 10
+WIDTH = 20
 
 def main():
-    pygame.init()
-    screen = pygame.display.set_mode((1280, 720), pygame.SCALED)
-    pygame.display.set_caption("Test Window")
+    test = snake.List((5, 5), None)
+    test = snake.List.List_add(test, 12)
+    test = snake.List.List_add(test, 14)
+    test = snake.List.List_add(test, 16)
+    print(test)
+    print("Size : ", snake.List.List_size(test))
 
-    clock = pygame.time.Clock()
-    live = True
-    x = 0
+    matrix = level.init_level(HEIGH, WIDTH)
+    matrix[5][5] = 1
+    level.spawn_apple(matrix, HEIGH, WIDTH)
+    print(matrix)
 
-    while live:
-        # Set clock tick to 60 fps
-        clock.tick(60)
-        
-        # 
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                live = False
-
-        # Change background color
-        if x == 255: x = 0
-        else: x += 1
-        screen.fill((x, 0, 0))
-        
-        # Draw Scene
-        pygame.display.flip()
-
-        # Display current fps
-        print(float("{0:.2f}".format(clock.get_fps())), 'fps')
 
 
 if __name__ == "__main__":
