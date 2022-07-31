@@ -1,4 +1,4 @@
-from ast import Break
+from ast import Break, Global
 import pygame
 from pygame.locals import *
 import src.level as level
@@ -8,8 +8,10 @@ import src.window as window
 LEVEL = 1
 HEIGH = 10
 WIDTH = 20
+MATRIX = level.init_level(HEIGH, WIDTH)
 
 def main():
+    global MATRIX
     L_snake = snake.List((5, 5), None)
     L_snake = snake.List.List_add(L_snake, (5, 4))
     L_snake = snake.List.List_add(L_snake, (5, 3))
@@ -17,15 +19,17 @@ def main():
     print(L_snake)
     print("Size : ", snake.List.List_size(L_snake))
     
+    MATRIX[5][5] = 1
+    MATRIX[5][4] = 1
+    MATRIX[5][3] = 1
+    MATRIX[5][2] = 1
 
-    matrix = level.init_level(HEIGH, WIDTH)
-    matrix[5][5] = 1
-    matrix[5][6] = 1
-    level.spawn_apple(matrix, HEIGH, WIDTH)
-    #print(matrix)
+    MATRIX[5][6] = 3
+    level.spawn_apple(MATRIX, HEIGH, WIDTH)
+    print(MATRIX)
 
     try:
-        L_snake = snake.Snake_move(matrix, L_snake, "right")
+        L_snake, MATRIX = snake.Snake_move(MATRIX, L_snake, "up")
     except ValueError as Error:
         if Error.args[0] == 1:
             print("You take a wall !")
@@ -36,6 +40,7 @@ def main():
     
     
     print(L_snake)
+    print(MATRIX)
 
 
 if __name__ == "__main__":
