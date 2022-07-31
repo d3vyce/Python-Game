@@ -33,12 +33,19 @@ def Snake_move(M, L, dir):
     Fruit = False
     List_save = L
     Save_Value = L.val
-    L.val = (DIRECTION[dir][0] + L.val[0], DIRECTION[dir][1] + L.val[1])
+    Next_pos = (DIRECTION[dir][0] + L.val[0], DIRECTION[dir][1] + L.val[1])
 
-    if M[L.val[0]][L.val[1]] == 2:
+    if M[Next_pos[0]][Next_pos[1]] == 3:
         Fruit = True
-        M[L.val[0]][L.val[1]] == 0
+        M[Next_pos[0]][Next_pos[1]] == 0
+    elif M[Next_pos[0]][Next_pos[1]] == 2: 
+        raise ValueError(1)         # Error : You take a wall !
+        quit
+    elif M[Next_pos[0]][Next_pos[1]] == 1:
+        raise ValueError(2)         # Error : You ate your tale !
+        quit
 
+    L.val = Next_pos
     L = L.next
 
     while L is not None:
