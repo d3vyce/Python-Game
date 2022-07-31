@@ -30,14 +30,24 @@ class List:
         return i
 
 def Snake_move(M, L, dir):
-    L_save = L
-
+    Fruit = False
+    List_save = L
+    Save_Value = L.val
     L.val = (DIRECTION[dir][0] + L.val[0], DIRECTION[dir][1] + L.val[1])
-    
+
+    if M[L.val[0]][L.val[1]] == 2:
+        Fruit = True
+        M[L.val[0]][L.val[1]] == 0
+
     L = L.next
-    L_save = L_save.next
 
     while L is not None:
-        
-
+        Save_bis_Value = L.val
+        L.val = Save_Value
+        Save_Value = Save_bis_Value
         L = L.next
+    
+    if Fruit:
+        List_save = List.List_add(List_save, Save_Value)
+
+    return List_save
