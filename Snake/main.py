@@ -1,3 +1,4 @@
+from ast import Break
 import pygame
 from pygame.locals import *
 import src.level as level
@@ -19,11 +20,21 @@ def main():
 
     matrix = level.init_level(HEIGH, WIDTH)
     matrix[5][5] = 1
-    matrix[5][6] = 2
+    matrix[5][6] = 1
     level.spawn_apple(matrix, HEIGH, WIDTH)
     #print(matrix)
 
-    L_snake = snake.Snake_move(matrix, L_snake, "right")
+    try:
+        L_snake = snake.Snake_move(matrix, L_snake, "right")
+    except ValueError as Error:
+        if Error.args[0] == 1:
+            print("You take a wall !")
+        elif Error.args[0] == 2:
+            print("You ate your tale !")
+        
+        exit()
+    
+    
     print(L_snake)
 
 
