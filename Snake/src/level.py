@@ -2,9 +2,8 @@ import numpy as np
 import random
 
 # 0 = AIR
-# 1 = SNAKE
-# 2 = WALL
-# 3 = APPLE
+# 1 = WALL
+# 2 = APPLE
 
 def init_level(heigh, width):
     return np.zeros((heigh, width))
