@@ -29,18 +29,26 @@ class List:
         
         return i
 
-def Snake_move(M, L, dir):
+def Snake_move(M, L, dir, heigh, width):
     Fruit = False
     List_save = L
     Save_Value = L.val
     
     # Calculate new snake head coord
-    Next_coord = (DIRECTION[dir][0] + L.val[0], DIRECTION[dir][1] + L.val[1])
+    if dir == 'left' and L.val[1] == 0:
+        Next_coord = (L.val[0], width-1)
+    elif dir == 'right' and L.val[1] == width-1:
+        Next_coord = (L.val[0], 0)
+    elif dir == 'up' and L.val[0] == 0:
+        Next_coord = (heigh-1, L.val[1])
+    elif dir == 'down' and L.val[0] == heigh-1:
+        Next_coord = (0, L.val[1])
+    else:
+        Next_coord = (DIRECTION[dir][0] + L.val[0], DIRECTION[dir][1] + L.val[1])
 
     # Check nature of the future snake head coord
     if M[Next_coord[0]][Next_coord[1]] == 3:
         Fruit = True
-        M[Next_coord[0]][Next_coord[1]] == 0
     elif M[Next_coord[0]][Next_coord[1]] == 2: 
         raise ValueError(1)         # Error : You take a wall !
         quit
