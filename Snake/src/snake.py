@@ -74,4 +74,4 @@ def Snake_move(M, L, dir, heigh, width):
     else:
         M[Save_Value[0]][Save_Value[1]] = 0
 
-    return List_save, M
+    return List_save, M, Fruit
