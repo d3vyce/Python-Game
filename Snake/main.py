@@ -18,14 +18,15 @@ def main():
     Running = True
     Direction = 'right'
     Direction_prev = 'right'
-    Move_loop = 30
+    Move_loop = 10
     Score = 0
-    Difficulty = 10
+    Difficulty = 1
     Fruit = False
 
     # Spawn snake head
     L_snake = snake.List((5, 5), None)
 
+    # Spawn first apple
     level.spawn_apple(Matrix, HEIGH, WIDTH)
 
     while Running:
@@ -48,7 +49,7 @@ def main():
                 Direction = Direction_prev
 
             try:
-                L_snake, Matrix, Fruit = snake.Snake_move(Matrix, L_snake, Direction, HEIGH, WIDTH)
+                L_snake, Matrix, Fruit, Score = snake.Snake_move(Matrix, L_snake, Direction, Score, HEIGH, WIDTH)
             except ValueError as Error:
                 if Error.args[0] == 1:
                     print("You take a wall !")
@@ -60,7 +61,9 @@ def main():
                 level.spawn_apple(Matrix, HEIGH, WIDTH)
             
             Direction_prev = Direction
-            Move_loop = 30 - Difficulty*2
+            if(Score > 1000):
+                Difficulty = int(Score/1000) + 1
+            Move_loop = 11 - Difficulty
 
         Move_loop -= 1
 
