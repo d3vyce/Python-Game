@@ -29,7 +29,7 @@ class List:
         
         return i
 
-def Snake_move(M, L, dir, heigh, width):
+def Snake_move(M, L, dir, score, heigh, width):
     Fruit = False
     List_save = L
     Save_Value = L.val
@@ -71,7 +71,8 @@ def Snake_move(M, L, dir, heigh, width):
     # If snake eat fruit -> spawn new segment at the end of the snake
     if Fruit:
         List_save = List.List_add(List_save, Save_Value)
+        score += 50
     else:
         M[Save_Value[0]][Save_Value[1]] = 0
 
-    return List_save, M, Fruit
+    return List_save, M, Fruit, score
