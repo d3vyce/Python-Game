@@ -65,7 +65,7 @@ def main():
         Move_loop -= 1
 
         # Draw Scene
-        Screen = window.draw_level(Screen, Matrix, Difficulty, Score, HEIGH, WIDTH)
+        Screen = window.draw_level(Screen, Matrix, Difficulty, Score, int(clock.get_fps()), HEIGH, WIDTH)
         pygame.display.flip()
 
         # Print current fps
