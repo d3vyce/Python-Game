@@ -1,4 +1,6 @@
-Snake in Python using pygame
+# Snake in Python using pygame
+
+![plot](./img/Snake.png)
 
 ## Install
 ```
