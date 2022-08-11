@@ -6,4 +6,8 @@ Here are the different games I've made so far in python.
   <img src="Snake/img/Snake.png" width="500" title="hover text">
 </p>
 
-- [*SOON*]
+- Chess [WIP]
+
+- Sudoku [SOON]
+
+- Pandemic [SOON]
